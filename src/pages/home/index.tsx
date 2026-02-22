@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import myAudio from '../../assets/audio/my-heart.mp3';
+import PageTitle from '../pageTitle/pageTitle';
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 interface Ayat {
@@ -535,6 +536,7 @@ const Home = () => {
         padding: '0 0 60px',
       }}
     >
+      <PageTitle title="Home" subtitle="Home" />
       {/* Background */}
       <div
         style={{

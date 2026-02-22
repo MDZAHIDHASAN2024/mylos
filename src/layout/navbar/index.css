@@ -5,9 +5,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
 
-/* ── CSS Variables ──────────────────────────────────────────────────────── */
 :root {
-  /* Colors */
   --black: #080808;
   --black-2: #0f0f0f;
   --black-3: #161616;
@@ -21,23 +19,16 @@
   --muted: #5a5040;
   --border: rgba(201, 168, 76, 0.14);
   --border-2: rgba(201, 168, 76, 0.28);
-
-  /* Layout */
   --nav-h: 66px;
   --drawer-w: 300px;
   --radius: 10px;
-
-  /* Fonts */
   --font-display: 'Cormorant Garamond', serif;
   --font-body: 'DM Sans', sans-serif;
-
-  /* Transitions */
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --t: 0.22s;
 }
 
-/* ── Reset ──────────────────────────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -55,15 +46,10 @@
   height: var(--nav-h);
   z-index: 1000;
   font-family: var(--font-body);
-
-  /* Glass dark background */
   background: rgba(8, 8, 8, 0.78);
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
-
   border-bottom: 1px solid transparent;
-
-  /* Scroll-hide: translate up when hidden */
   transform: translateY(0);
   transition:
     transform 0.38s var(--ease),
@@ -72,7 +58,6 @@
     background var(--t) var(--ease);
 }
 
-/* Scrolled: richer border + shadow */
 .nx-nav--scrolled {
   background: rgba(6, 6, 6, 0.94);
   border-bottom-color: var(--border);
@@ -82,12 +67,10 @@
     0 0 60px rgba(201, 168, 76, 0.04);
 }
 
-/* Hidden: slide up off-screen */
 .nx-nav--hidden {
   transform: translateY(-110%);
 }
 
-/* Gold top accent line */
 .nx-nav__topline {
   position: absolute;
   top: 0;
@@ -105,7 +88,6 @@
   opacity: 0.7;
 }
 
-/* ── Inner container ────────────────────────────────────────────────────── */
 .nx-inner {
   max-width: 1320px;
   margin: 0 auto;
@@ -218,7 +200,6 @@
     background var(--t) var(--ease);
 }
 
-/* Gold underline on hover/active */
 .nx-link::after {
   content: '';
   position: absolute;
@@ -241,16 +222,13 @@
   color: var(--gold-light);
   background: rgba(201, 168, 76, 0.06);
 }
-
 .nx-link:hover::after {
   width: 70%;
 }
-
 .nx-link--active {
   color: var(--gold);
   font-weight: 600;
 }
-
 .nx-link--active::after {
   width: 70%;
 }
@@ -260,13 +238,11 @@
   position: relative;
   list-style: none;
 }
-
 .nx-dd__trigger {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
 }
-
 .nx-dd__chevron {
   font-size: 0.65rem;
   color: var(--gold-dim);
@@ -274,7 +250,6 @@
     transform 0.2s var(--ease),
     color var(--t);
 }
-
 .nx-dd__chevron--open {
   transform: rotate(180deg);
   color: var(--gold);
@@ -333,14 +308,12 @@
     color var(--t) var(--ease),
     padding-left var(--t) var(--ease);
 }
-
 .nx-dd__item:hover,
 .nx-dd__item--active {
   background: rgba(201, 168, 76, 0.09);
   color: var(--gold-light);
   padding-left: 1rem;
 }
-
 .nx-dd__dot {
   width: 4px;
   height: 4px;
@@ -348,17 +321,14 @@
   background: var(--gold);
   opacity: 0.4;
   flex-shrink: 0;
-  transition:
-    opacity var(--t),
-    background var(--t);
+  transition: opacity var(--t);
 }
-
 .nx-dd__item:hover .nx-dd__dot,
 .nx-dd__item--active .nx-dd__dot {
   opacity: 1;
 }
 
-/* ── AUTH AREA ──────────────────────────────────────────────────────────── */
+/* ── AUTH ───────────────────────────────────────────────────────────────── */
 .nx-auth {
   display: flex;
   align-items: center;
@@ -366,7 +336,6 @@
   flex-shrink: 0;
 }
 
-/* ── User Pill ──────────────────────────────────────────────────────────── */
 .nx-user-pill {
   display: flex;
   align-items: center;
@@ -379,7 +348,6 @@
     border-color var(--t),
     background var(--t);
 }
-
 .nx-user-pill:hover {
   border-color: var(--border-2);
   background: rgba(201, 168, 76, 0.11);
@@ -399,13 +367,11 @@
   color: #0a0800;
   flex-shrink: 0;
 }
-
 .nx-avatar--lg {
   width: 44px;
   height: 44px;
   font-size: 1rem;
 }
-
 .nx-user-pill__name {
   font-size: 0.8rem;
   font-weight: 600;
@@ -434,7 +400,6 @@
     border-color var(--t),
     color var(--t);
 }
-
 .nx-user-pill__logout:hover {
   background: rgba(239, 68, 68, 0.2);
   border-color: rgba(239, 68, 68, 0.45);
@@ -442,7 +407,6 @@
   transform: scale(1.12) rotate(8deg);
 }
 
-/* ── Sign In Button ─────────────────────────────────────────────────────── */
 .nx-signin-btn {
   position: relative;
   display: inline-flex;
@@ -469,13 +433,11 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   animation: nx-gold-pulse 3.5s ease-in-out infinite;
 }
-
 .nx-signin-btn--full {
   width: 100%;
   justify-content: center;
   border-radius: var(--radius);
 }
-
 .nx-signin-btn__fill {
   position: absolute;
   inset: 0;
@@ -490,7 +452,6 @@
   animation: nx-gold-shift 4s ease-in-out infinite;
   z-index: -2;
 }
-
 .nx-signin-btn__shimmer {
   position: absolute;
   inset: 0;
@@ -504,7 +465,6 @@
   animation: nx-shimmer 3s ease-in-out infinite;
   z-index: -1;
 }
-
 .nx-signin-btn:hover {
   transform: translateY(-2px) scale(1.04);
   box-shadow:
@@ -513,16 +473,13 @@
     0 0 50px rgba(201, 168, 76, 0.15);
   animation: none;
 }
-
 .nx-signin-btn:active {
   transform: scale(0.97);
 }
-
 .nx-signin-btn__ico {
   font-size: 0.78rem;
   opacity: 0.85;
 }
-
 .nx-signin-btn__arr {
   font-size: 1.15rem;
   line-height: 1;
@@ -531,44 +488,15 @@
     transform 0.18s var(--ease),
     opacity 0.18s;
 }
-
 .nx-signin-btn:hover .nx-signin-btn__arr {
   transform: translateX(4px);
   opacity: 1;
 }
 
-/* ── HAMBURGER ──────────────────────────────────────────────────────────── */
-.nx-ham {
+/* ── HAMBURGER FIXED — navbar এর বাইরে, position:fixed ──────────────────── */
+/* Desktop এ লুকানো */
+.nx-ham-fixed {
   display: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 9px;
-  border: 1px solid var(--border);
-  background: rgba(201, 168, 76, 0.05);
-  color: var(--gold-dim);
-  font-size: 1.05rem;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition:
-    background var(--t),
-    color var(--t),
-    border-color var(--t),
-    transform var(--t) var(--ease-spring);
-}
-
-.nx-ham:hover {
-  background: rgba(201, 168, 76, 0.12);
-  color: var(--gold);
-  border-color: var(--border-2);
-}
-
-.nx-ham--open {
-  color: var(--gold);
-  background: rgba(201, 168, 76, 0.12);
-  border-color: var(--border-2);
-  transform: rotate(90deg);
 }
 
 /* ── BACKDROP ───────────────────────────────────────────────────────────── */
@@ -582,7 +510,6 @@
   pointer-events: none;
   transition: opacity 0.3s var(--ease);
 }
-
 .nx-backdrop--open {
   opacity: 1;
   pointer-events: auto;
@@ -606,11 +533,8 @@
   font-family: var(--font-body);
   overflow-y: auto;
   overflow-x: hidden;
-
-  /* Gold left accent when open */
   box-shadow: none;
 }
-
 .nx-drawer--open {
   transform: translateX(0);
   box-shadow:
@@ -618,7 +542,6 @@
     -1px 0 0 var(--border-2);
 }
 
-/* Top bar */
 .nx-drawer__topbar {
   display: flex;
   align-items: center;
@@ -646,14 +569,12 @@
     background var(--t),
     border-color var(--t);
 }
-
 .nx-drawer__x:hover {
   color: var(--gold);
   background: rgba(201, 168, 76, 0.08);
   border-color: var(--border-2);
 }
 
-/* User card */
 .nx-drawer__card {
   display: flex;
   align-items: center;
@@ -662,7 +583,6 @@
   background: rgba(201, 168, 76, 0.04);
   border-bottom: 1px solid var(--border);
 }
-
 .nx-drawer__card-info {
   display: flex;
   flex-direction: column;
@@ -670,7 +590,6 @@
   overflow: hidden;
   min-width: 0;
 }
-
 .nx-drawer__card-name {
   font-size: 0.9rem;
   font-weight: 700;
@@ -679,7 +598,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .nx-drawer__card-email {
   font-size: 0.72rem;
   color: var(--muted);
@@ -687,13 +605,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .nx-drawer__card-guest {
   font-size: 0.88rem;
   color: var(--muted);
 }
 
-/* Nav links */
 .nx-drawer__nav {
   flex: 1;
   padding: 0.7rem 0.75rem 0;
@@ -718,13 +634,11 @@
   animation: nx-slide-in 0.32s var(--ease) both;
   animation-delay: calc(var(--i, 0) * 0.04s);
 }
-
 .nx-drawer__link:hover {
   background: rgba(201, 168, 76, 0.07);
   color: var(--gold-light);
   transform: translateX(5px);
 }
-
 .nx-drawer__link--active {
   background: rgba(201, 168, 76, 0.1);
   color: var(--gold);
@@ -733,14 +647,12 @@
   padding-left: calc(0.9rem - 2px);
 }
 
-/* ── Accordion ──────────────────────────────────────────────────────────── */
 .nx-acc {
   margin-top: 0.2rem;
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--border);
 }
-
 .nx-acc__btn {
   width: 100%;
   display: flex;
@@ -758,12 +670,10 @@
     background var(--t),
     color var(--t);
 }
-
 .nx-acc__btn:hover {
   background: rgba(201, 168, 76, 0.08);
   color: var(--gold-light);
 }
-
 .nx-acc__chevron {
   font-size: 0.65rem;
   color: var(--gold-dim);
@@ -771,23 +681,19 @@
     transform 0.22s var(--ease),
     color var(--t);
 }
-
 .nx-acc__chevron--open {
   transform: rotate(180deg);
   color: var(--gold);
 }
-
 .nx-acc__body {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.28s var(--ease);
   background: rgba(0, 0, 0, 0.2);
 }
-
 .nx-acc__body--open {
   max-height: 260px;
 }
-
 .nx-acc__link {
   display: flex;
   align-items: center;
@@ -801,13 +707,11 @@
     color var(--t),
     padding-left var(--t) var(--ease);
 }
-
 .nx-acc__link:hover,
 .nx-acc__link--active {
   color: var(--gold-light);
   padding-left: 1.4rem;
 }
-
 .nx-acc__dot {
   width: 4px;
   height: 4px;
@@ -817,19 +721,16 @@
   flex-shrink: 0;
   transition: opacity var(--t);
 }
-
 .nx-acc__link:hover .nx-acc__dot,
 .nx-acc__link--active .nx-acc__dot {
   opacity: 1;
 }
 
-/* ── Drawer Footer ──────────────────────────────────────────────────────── */
 .nx-drawer__footer {
   padding: 1rem;
   border-top: 1px solid var(--border);
   background: rgba(201, 168, 76, 0.03);
 }
-
 .nx-drawer__logout-btn {
   width: 100%;
   display: flex;
@@ -850,7 +751,6 @@
     border-color var(--t),
     color var(--t);
 }
-
 .nx-drawer__logout-btn:hover {
   background: rgba(239, 68, 68, 0.15);
   border-color: rgba(239, 68, 68, 0.4);
@@ -872,7 +772,6 @@
       0 0 40px rgba(201, 168, 76, 0.12);
   }
 }
-
 @keyframes nx-gold-shift {
   0% {
     background-position: 0% 50%;
@@ -884,7 +783,6 @@
     background-position: 0% 50%;
   }
 }
-
 @keyframes nx-shimmer {
   0% {
     background-position: -200% 0;
@@ -896,7 +794,6 @@
     background-position: 200% 0;
   }
 }
-
 @keyframes nx-slide-in {
   from {
     opacity: 0;
@@ -923,9 +820,15 @@
   .nx-auth {
     display: none;
   }
-  .nx-ham {
-    display: flex;
-    margin-left: auto;
+  /* Hamburger mobile এ দেখাবে — style inline এ দেওয়া আছে tsx এ */
+  .nx-ham-fixed {
+    display: flex !important;
+  }
+}
+
+@media (min-width: 861px) {
+  .nx-ham-fixed {
+    display: none !important;
   }
 }
 
@@ -941,8 +844,7 @@
   }
 }
 
-/* ── Spacer — navbar height এর সমান, সব page content নিচে ঠেলে দেয় ── */
 .nx-spacer {
-  height: var(--nav-h); /* 66px */
+  height: var(--nav-h);
   flex-shrink: 0;
 }

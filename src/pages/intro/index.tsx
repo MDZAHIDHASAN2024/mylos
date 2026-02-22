@@ -220,7 +220,7 @@ const Intro = (): React.ReactElement => {
       <div className="in-glow in-glow--2" />
 
       <div className="in-inner">
-        <PageTitle title="Intro" />
+        <PageTitle title="Intro" subtitle="Intro" />
 
         {/* ══ HERO ══ */}
         <div

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import PageTitle from '../pageTitle/pageTitle';
+
 import './index.css';
+import PageTitle from '../pageTitle/pageTitle';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -16,13 +17,13 @@ interface Principle {
 const principles: Principle[] = [
   {
     id: 1,
-    icon: '💛',
+    icon: '🤲',
     arabic: 'رِضَا ٱللَّٰهِ',
     rule: 'প্রতিটি কাজে আল্লাহর সন্তুষ্টি অর্জনের চেষ্টা করো।',
   },
   {
     id: 2,
-    icon: '☪',
+    icon: '🌾',
     arabic: 'الرِّزْقُ الْحَلَالُ',
     rule: 'হালাল রুজি উপার্জন ও ভক্ষণ করো।',
   },
@@ -40,7 +41,7 @@ const principles: Principle[] = [
   },
   {
     id: 5,
-    icon: '💛',
+    icon: '💸',
     arabic: 'الصَّدَقَةُ',
     rule: 'সাধ্য মতো বেশি বেশি দান করো।',
   },
@@ -125,12 +126,13 @@ const Principles = (): React.ReactElement => {
 
   return (
     <div className="pr-page">
+      <PageTitle title="Principle" subtitle="Principle" />
       {/* ambient background glows */}
       <div className="pr-page__glow pr-page__glow--1" />
       <div className="pr-page__glow pr-page__glow--2" />
 
       <div className="pr-page__inner">
-        <PageTitle title="Main Principle's" />
+        <PageTitle title="Principles" />
 
         {/* ── Header ── */}
         <div

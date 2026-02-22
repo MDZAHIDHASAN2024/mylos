@@ -5,12 +5,10 @@ import {
   FaChevronDown,
   FaSignOutAlt,
   FaUser,
-  FaBars,
   FaTimes,
 } from 'react-icons/fa';
 import './index.css';
 
-// ─── Types ───────────────────────────────────────────────────────────────────
 interface DropdownItem {
   label: string;
   to: string;
@@ -21,7 +19,6 @@ interface NavItem {
   authRequired: boolean;
 }
 
-// ─── Data ────────────────────────────────────────────────────────────────────
 const NAV_ITEMS: NavItem[] = [
   { label: 'Home', to: '/', authRequired: false },
   { label: 'Intro', to: '/Intro', authRequired: true },
@@ -38,7 +35,6 @@ const FORMULA_ITEMS: DropdownItem[] = [
   { label: 'Tour Plan', to: '/tourPlanFormula' },
 ];
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
 const getStoredEmail = (): string => {
   try {
     return JSON.parse(localStorage.getItem('user') || '{}').email || '';
@@ -47,10 +43,8 @@ const getStoredEmail = (): string => {
   }
 };
 
-// ─── Component ───────────────────────────────────────────────────────────────
 const Index = (): React.ReactElement => {
   const navigate = useNavigate();
-
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(
     () => !!localStorage.getItem('user'),
   );
@@ -58,15 +52,11 @@ const Index = (): React.ReactElement => {
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
   const [mobileFormulas, setMobileFormulas] = useState<boolean>(false);
-
-  // ── Scroll hide / show state ────────────────────────────────────────────
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [navHidden, setNavHidden] = useState<boolean>(false);
   const lastScrollY = useRef<number>(0);
-
   const dropdownRef = useRef<HTMLLIElement>(null);
 
-  // Prevent body scroll when drawer open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => {
@@ -74,34 +64,22 @@ const Index = (): React.ReactElement => {
     };
   }, [mobileOpen]);
 
-  // ── Scroll: shadow + hide/show ──────────────────────────────────────────
   useEffect((): (() => void) => {
-    const HIDE_THRESHOLD = 80;
-    const SHOW_UP_DELTA = 8;
-
     const onScroll = (): void => {
       const current = window.scrollY;
       const delta = current - lastScrollY.current;
-
       setScrolled(current > 10);
-
-      if (current < HIDE_THRESHOLD) {
-        setNavHidden(false);
-      } else if (delta > 4) {
+      if (current < 80) setNavHidden(false);
+      else if (delta > 4) {
         setNavHidden(true);
         setDropdownOpen(false);
-      } else if (delta < -SHOW_UP_DELTA) {
-        setNavHidden(false);
-      }
-
+      } else if (delta < -8) setNavHidden(false);
       lastScrollY.current = current;
     };
-
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close dropdown on outside click
   useEffect((): (() => void) => {
     const fn = (e: MouseEvent): void => {
       if (
@@ -114,7 +92,6 @@ const Index = (): React.ReactElement => {
     return () => document.removeEventListener('mousedown', fn);
   }, []);
 
-  // Sync login state
   useEffect((): (() => void) => {
     const sync = (): void => {
       setIsLoggedIn(!!localStorage.getItem('user'));
@@ -142,12 +119,11 @@ const Index = (): React.ReactElement => {
     closeMobile();
   };
 
-  const visibleItems: NavItem[] = NAV_ITEMS.filter(
+  const visibleItems = NAV_ITEMS.filter(
     (item) => !item.authRequired || isLoggedIn,
   );
-
-  const avatarLetter: string = userEmail ? userEmail[0].toUpperCase() : 'U';
-  const displayName: string = userEmail ? userEmail.split('@')[0] : '';
+  const avatarLetter = userEmail ? userEmail[0].toUpperCase() : 'U';
+  const displayName = userEmail ? userEmail.split('@')[0] : '';
 
   const navClass = [
     'nx-nav',
@@ -157,14 +133,34 @@ const Index = (): React.ReactElement => {
     .filter(Boolean)
     .join(' ');
 
+  // ── Hamburger inline style — position:fixed দিয়ে সব overflow bypass ──
+  const hamStyle: React.CSSProperties = {
+    position: 'fixed',
+    top: '13px',
+    right: '1rem',
+    zIndex: 1100,
+    width: '40px',
+    height: '40px',
+    borderRadius: '9px',
+    border: '1px solid rgba(201,168,76,0.14)',
+    background: mobileOpen ? 'rgba(201,168,76,0.12)' : 'rgba(201,168,76,0.05)',
+    color: '#ffffff',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    transform: mobileOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+    transition:
+      'transform 0.22s ease, background 0.22s ease, border-color 0.22s ease',
+    flexShrink: 0,
+    padding: 0,
+  };
+
   return (
     <>
-      {/* ══════════════════════ NAVBAR ══════════════════════ */}
       <nav className={navClass}>
         <div className="nx-nav__topline" />
-
         <div className="nx-inner">
-          {/* Brand */}
           <Link to="/" className="nx-brand" onClick={closeMobile}>
             <span className="nx-brand__orb">
               <FaBalanceScale />
@@ -172,7 +168,6 @@ const Index = (): React.ReactElement => {
             <span className="nx-brand__word">MYLOS</span>
           </Link>
 
-          {/* Desktop links */}
           <ul className="nx-links">
             {visibleItems.map((item) => (
               <li key={item.to}>
@@ -186,8 +181,6 @@ const Index = (): React.ReactElement => {
                 </NavLink>
               </li>
             ))}
-
-            {/* Formulas dropdown */}
             <li className="nx-dd" ref={dropdownRef}>
               <button
                 className={`nx-link nx-dd__trigger${dropdownOpen ? ' nx-link--active' : ''}`}
@@ -199,7 +192,6 @@ const Index = (): React.ReactElement => {
                   className={`nx-dd__chevron${dropdownOpen ? ' nx-dd__chevron--open' : ''}`}
                 />
               </button>
-
               <div
                 className={`nx-dd__panel${dropdownOpen ? ' nx-dd__panel--open' : ''}`}
               >
@@ -222,7 +214,6 @@ const Index = (): React.ReactElement => {
             </li>
           </ul>
 
-          {/* Desktop Auth */}
           <div className="nx-auth">
             {isLoggedIn ? (
               <div className="nx-user-pill">
@@ -246,32 +237,55 @@ const Index = (): React.ReactElement => {
               </button>
             )}
           </div>
-
-          {/* Hamburger */}
-          <button
-            className={`nx-ham${mobileOpen ? ' nx-ham--open' : ''}`}
-            onClick={() => setMobileOpen((p) => !p)}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <FaTimes /> : <FaBars />}
-          </button>
         </div>
       </nav>
 
-      {/* ✅ SPACER — এই div টা navbar এর height এর সমান জায়গা নেয়।
-          যেকোনো page এ Index render হলে এই spacer সব content কে
-          navbar এর নিচে ঠেলে দেবে। */}
+      {/* Hamburger — fixed position, সব overflow এর বাইরে */}
+      <button
+        className="nx-ham-fixed"
+        style={hamStyle}
+        onClick={() => setMobileOpen((p) => !p)}
+        aria-label="Toggle menu"
+      >
+        {mobileOpen ? (
+          // X icon
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6L6 18M6 6l12 12"
+              stroke="#ffffff"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              fill="none"
+            />
+          </svg>
+        ) : (
+          // Bars icon
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="3" y="6" width="18" height="2" rx="1" fill="#ffffff" />
+            <rect x="3" y="11" width="18" height="2" rx="1" fill="#ffffff" />
+            <rect x="3" y="16" width="18" height="2" rx="1" fill="#ffffff" />
+          </svg>
+        )}
+      </button>
+
       <div className="nx-spacer" />
 
-      {/* Backdrop */}
       <div
         className={`nx-backdrop${mobileOpen ? ' nx-backdrop--open' : ''}`}
         onClick={closeMobile}
       />
 
-      {/* ══════════════════════ MOBILE DRAWER ══════════════════════ */}
       <aside className={`nx-drawer${mobileOpen ? ' nx-drawer--open' : ''}`}>
-        {/* Top bar */}
         <div className="nx-drawer__topbar">
           <Link to="/" className="nx-brand" onClick={closeMobile}>
             <span className="nx-brand__orb nx-brand__orb--sm">
@@ -284,11 +298,12 @@ const Index = (): React.ReactElement => {
             onClick={closeMobile}
             aria-label="Close"
           >
-            <FaTimes />
+            <span>
+              <FaTimes />
+            </span>
           </button>
         </div>
 
-        {/* User card */}
         <div className="nx-drawer__card">
           {isLoggedIn ? (
             <>
@@ -303,7 +318,6 @@ const Index = (): React.ReactElement => {
           )}
         </div>
 
-        {/* Nav */}
         <nav className="nx-drawer__nav">
           {visibleItems.map((item, i) => (
             <NavLink
@@ -319,7 +333,6 @@ const Index = (): React.ReactElement => {
             </NavLink>
           ))}
 
-          {/* Accordion */}
           <div className="nx-acc">
             <button
               className="nx-acc__btn"
@@ -350,7 +363,6 @@ const Index = (): React.ReactElement => {
           </div>
         </nav>
 
-        {/* Footer */}
         <div className="nx-drawer__footer">
           {isLoggedIn ? (
             <button className="nx-drawer__logout-btn" onClick={handleLogout}>

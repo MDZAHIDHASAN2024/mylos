@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PageTitle from '../pageTitle/pageTitle';
 
 interface WorkItem {
   start: string;
@@ -197,6 +198,7 @@ export default function Works() {
 
   return (
     <>
+      <PageTitle title="Work" subtitle="Work" />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

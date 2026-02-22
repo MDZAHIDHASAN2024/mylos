@@ -104,6 +104,7 @@ const Jahannam = () => {
 
   return (
     <>
+      <PageTitle title="Jahannam" subtitle="Jahannam" />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Amiri:wght@400;700&family=Cinzel:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap');
 

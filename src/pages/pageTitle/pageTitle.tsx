@@ -1,14 +1,27 @@
+import { useEffect } from 'react';
+
 type Title = {
   title: string;
+  subtitle?: string;
 };
 
-import { Helmet } from 'react-helmet';
-const PageTitle = ({ title }: Title) => {
+const PageTitle = ({ title, subtitle }: Title) => {
+  useEffect(() => {
+    document.title = `${title} | MYLOS`;
+  }, [title]);
+
   return (
-    <div>
-      <Helmet>
-        <title>{title}</title>
-      </Helmet>
+    <div className="page-title-wrapper">
+      <div className="page-title-inner">
+        <div className="page-title-line" />
+        <div className="page-title-content">
+          <span className="page-title-label">MYLOS</span>
+          <h1 className="page-title-heading">{title}</h1>
+          {subtitle && <p className="page-title-sub">{subtitle}</p>}
+        </div>
+        <div className="page-title-line" />
+      </div>
+      <div className="page-title-glow" />
     </div>
   );
 };

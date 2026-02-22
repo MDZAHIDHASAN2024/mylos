@@ -10,6 +10,7 @@ import {
   FaUserPlus,
 } from 'react-icons/fa';
 import './login.css';
+import PageTitle from '../pageTitle/pageTitle';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 type Tab = 'signin' | 'register';
@@ -171,6 +172,7 @@ const Login = (): React.ReactElement => {
 
   return (
     <div className="lp-page">
+      <PageTitle title="Login" subtitle="Login" />
       {/* ── Decorative background ── */}
       <div className="lp-bg">
         <div className="lp-bg__grid" />
