@@ -1,0 +1,213 @@
+─── Dynamic Auth Buttons ─────────────────────────────────────────────────
+
+/* Base button reset */
+.nx-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 2rem;
+  padding: 0.5rem 1.2rem 0.5rem 0.6rem;
+  overflow: hidden;
+  transition:
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  isolation: isolate;
+}
+
+/* ── LOGIN BUTTON ─────────────────────────────────────────────────────────── */
+.nx-btn--login {
+  background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 100%);
+  color: #fff;
+  box-shadow:
+    0 0 0 1.5px rgba(124, 58, 237, 0.5),
+    0 4px 16px rgba(29, 78, 216, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  animation: nx-btn-pulse 3s ease-in-out infinite;
+}
+
+.nx-btn--login:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow:
+    0 0 0 2px rgba(124, 58, 237, 0.7),
+    0 8px 28px rgba(29, 78, 216, 0.6),
+    0 0 40px rgba(124, 58, 237, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  animation: none;
+}
+
+.nx-btn--login:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Shimmer sweep */
+.nx-btn__shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: nx-shimmer 2.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Glow orb behind button */
+.nx-btn__glow {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(167, 139, 250, 0.6),
+    transparent 70%
+  );
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  filter: blur(8px);
+  animation: nx-glow-drift 3s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+.nx-btn__user-icon {
+  position: relative;
+  z-index: 2;
+  font-size: 0.8rem;
+  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  padding: 4px;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nx-btn--login .nx-btn__label {
+  position: relative;
+  z-index: 2;
+}
+
+.nx-btn__arrow {
+  position: relative;
+  z-index: 2;
+  font-size: 1rem;
+  opacity: 0.8;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.nx-btn--login:hover .nx-btn__arrow {
+  transform: translateX(3px);
+  opacity: 1;
+}
+
+/* ── LOGOUT BUTTON ────────────────────────────────────────────────────────── */
+.nx-btn--logout {
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 0.45rem 1rem 0.45rem 0.5rem;
+  backdrop-filter: blur(6px);
+}
+
+.nx-btn--logout:hover {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.45);
+  color: #fca5a5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.2);
+}
+
+.nx-btn--logout:active {
+  transform: translateY(0);
+}
+
+.nx-btn__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #334155, #475569);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.75rem;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.nx-btn--logout:hover .nx-btn__avatar {
+  background: linear-gradient(135deg, #450a0a, #7f1d1d);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+
+.nx-btn__exit-icon {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s;
+}
+
+.nx-btn--logout:hover .nx-btn__exit-icon {
+  transform: translateX(2px);
+  opacity: 1;
+}
+
+/* ── KEYFRAMES ────────────────────────────────────────────────────────────── */
+@keyframes nx-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  60% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes nx-btn-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1.5px rgba(124, 58, 237, 0.5),
+      0 4px 16px rgba(29, 78, 216, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 0 2.5px rgba(124, 58, 237, 0.7),
+      0 4px 22px rgba(29, 78, 216, 0.6),
+      0 0 30px rgba(124, 58, 237, 0.25);
+  }
+}
+
+@keyframes nx-glow-drift {
+  from {
+    left: 5%;
+    opacity: 0.5;
+  }
+  to {
+    left: 60%;
+    opacity: 0.8;
+  }
+}

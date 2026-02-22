@@ -1,0 +1,328 @@
+/* ═══════════════════════════════════════════════════════════════
+   PRINCIPLES PAGE — Dark Luxury · consistent with NX palette
+   ═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=Noto+Serif+Bengali:wght@400;600&display=swap');
+
+:root {
+  --pr-bg: #060a0e;
+  --pr-card-bg: #0b1018;
+  --pr-card-hover: #0f1520;
+  --pr-border: rgba(255, 255, 255, 0.06);
+  --pr-gold: #c9a84c;
+  --pr-gold-glow: rgba(201, 168, 76, 0.25);
+  --pr-gold-light: #e8c96a;
+  --pr-teal: #2dd4bf;
+  --pr-text: #cbd5e1;
+  --pr-text-muted: #475569;
+  --pr-font-brand: 'Cinzel', serif;
+  --pr-font-body: 'DM Sans', sans-serif;
+  --pr-font-bangla: 'Noto Serif Bengali', serif;
+}
+
+/* ── Page wrapper ── */
+.pr-page {
+  min-height: 100vh;
+  background: var(--pr-bg);
+  position: relative;
+  overflow: hidden;
+  font-family: var(--pr-font-body);
+}
+
+/* ambient glows */
+.pr-page__glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pr-page__glow--1 {
+  top: -120px;
+  right: -120px;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 76, 0.06) 0%,
+    transparent 70%
+  );
+}
+
+.pr-page__glow--2 {
+  bottom: -80px;
+  left: -80px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(
+    circle,
+    rgba(45, 212, 191, 0.04) 0%,
+    transparent 70%
+  );
+}
+
+.pr-page__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+
+/* ── Header ── */
+.pr-header {
+  text-align: center;
+  margin-bottom: 56px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.pr-header--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pr-header__eyebrow {
+  font-family: var(--pr-font-brand);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--pr-teal);
+  margin-bottom: 14px;
+  opacity: 0.8;
+}
+
+.pr-header__title {
+  font-family: var(--pr-font-brand);
+  font-size: clamp(36px, 6vw, 58px);
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: 2px;
+  margin: 0 0 16px;
+  line-height: 1.1;
+}
+
+.pr-header__title-accent {
+  color: var(--pr-gold);
+  text-shadow: 0 0 30px var(--pr-gold-glow);
+}
+
+.pr-header__sub {
+  font-family: var(--pr-font-bangla);
+  font-size: 15px;
+  color: rgb(230, 81, 13);
+  margin: 0 0 28px;
+  line-height: 1.7;
+}
+
+.pr-header__line {
+  width: 80px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--pr-gold), transparent);
+  margin: 0 auto;
+  box-shadow: 0 0 10px var(--pr-gold-glow);
+}
+
+/* ── Cards grid ── */
+.pr-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* ── Individual card ── */
+.pr-card {
+  position: relative;
+  background: var(--pr-card-bg);
+  border: 1px solid var(--pr-border);
+  border-radius: 16px;
+  padding: 32px 28px 28px;
+  overflow: hidden;
+  cursor: default;
+
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.pr-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pr-card--hovered {
+  background: var(--pr-card-hover);
+  border-color: rgba(201, 168, 76, 0.3);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(201, 168, 76, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* number ribbon (top-right) */
+.pr-card__ribbon {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+}
+
+.pr-card__num {
+  font-family: var(--pr-font-brand);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--pr-gold);
+  opacity: 0.4;
+  transition: opacity 0.3s;
+}
+
+.pr-card--hovered .pr-card__num {
+  opacity: 0.9;
+}
+
+/* glow blob behind icon */
+.pr-card__blob {
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 76, 0.07) 0%,
+    transparent 70%
+  );
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.pr-card--hovered .pr-card__blob {
+  opacity: 1;
+}
+
+/* icon */
+.pr-card__icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  background: rgba(201, 168, 76, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition:
+    border-color 0.3s,
+    background 0.3s,
+    transform 0.3s;
+}
+
+.pr-card--hovered .pr-card__icon-wrap {
+  border-color: rgba(201, 168, 76, 0.4);
+  background: rgba(201, 168, 76, 0.13);
+  transform: scale(1.06);
+}
+
+.pr-card__icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* arabic text */
+.pr-card__arabic {
+  font-size: 15px;
+  color: var(--pr-gold);
+  opacity: 0.65;
+  margin: 0 0 10px;
+  direction: rtl;
+  letter-spacing: 0.5px;
+  transition: opacity 0.3s;
+}
+
+.pr-card--hovered .pr-card__arabic {
+  opacity: 1;
+}
+
+/* bangla rule */
+.pr-card__rule {
+  font-family: var(--pr-font-bangla);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--pr-text);
+  line-height: 1.6;
+  margin: 0;
+  transition: color 0.3s;
+}
+
+.pr-card--hovered .pr-card__rule {
+  color: #e2e8f0;
+}
+
+/* bottom accent bar */
+.pr-card__accent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--pr-gold), transparent);
+  opacity: 0;
+  transform: scaleX(0.4);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.pr-card--hovered .pr-card__accent {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* ── Footer note ── */
+.pr-footnote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 52px;
+  font-family: var(--pr-font-bangla);
+  font-size: 13px;
+  color: var(--pr-text-muted);
+  text-align: center;
+}
+
+.pr-footnote__dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--pr-gold);
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .pr-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .pr-page__inner {
+    padding: 40px 16px 60px;
+  }
+
+  .pr-card {
+    padding: 24px 20px 20px;
+  }
+}

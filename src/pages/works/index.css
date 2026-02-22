@@ -1,0 +1,15 @@
+.container {
+  max-width: 1200px;
+}
+.shadow {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.table-dark th {
+  background: linear-gradient(45deg, #2c3e50, #34495e);
+}
+.bg-success {
+  background: linear-gradient(45deg, #28a745, #20c997) !important;
+}
+.table-success {
+  background-color: rgba(40, 167, 74, 0.1) !important;
+}
