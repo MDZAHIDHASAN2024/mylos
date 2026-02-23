@@ -296,7 +296,10 @@ const Index = (): React.ReactElement => {
       </button>
 
       {/* ── MARQUEE BAR — navbar-এর ঠিক নিচে ── */}
-      <div className="nx-marquee-bar">
+      {/* navHidden হলে marquee-ও hide হবে */}
+      <div
+        className={`nx-marquee-bar${navHidden ? ' nx-marquee-bar--hidden' : ''}`}
+      >
         <div className="nx-marquee-track">
           <span
             className={`nx-marquee-text nx-marquee-text--${MARQUEE_CONFIG.style}`}

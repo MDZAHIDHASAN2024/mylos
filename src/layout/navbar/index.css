@@ -513,10 +513,17 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  /* ← transform যোগ হয়েছে scroll hide-এর জন্য */
   transition:
     background 0.4s var(--ease),
     border-color 0.4s var(--ease),
-    height 0.3s var(--ease);
+    height 0.3s var(--ease),
+    transform 0.38s var(--ease);
+}
+
+/* ← নতুন: scroll করলে navbar-এর সাথে marquee-ও hide হবে */
+.nx-marquee-bar--hidden {
+  transform: translateY(calc(-100% - var(--nav-h)));
 }
 
 /* hover করলে theme বদলাবে */
