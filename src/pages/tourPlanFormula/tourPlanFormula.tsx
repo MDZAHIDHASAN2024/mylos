@@ -68,7 +68,7 @@ const TourPlanFormula = () => {
 
   return (
     <>
-      <PageTitle title="Tour Plan Formula" subtitle="Tour Plan Formula" />
+      {/* <PageTitle title="Tour Plan Formula" subtitle="Tour Plan Formula" /> */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Cinzel:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap');
 

@@ -126,11 +126,13 @@ const Principles = (): React.ReactElement => {
 
   return (
     <div className="pr-page">
-      <PageTitle title="Principle" subtitle="Principle" />
+      {/* <PageTitle
+        title="Islamic Principles"
+        subtitle="Guidelines based on Qur’an and Sunnah"
+      /> */}
       {/* ambient background glows */}
       <div className="pr-page__glow pr-page__glow--1" />
       <div className="pr-page__glow pr-page__glow--2" />
-
       <div className="pr-page__inner">
         <PageTitle title="Principles" />
 

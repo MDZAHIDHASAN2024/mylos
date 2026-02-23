@@ -35,6 +35,26 @@ const FORMULA_ITEMS: DropdownItem[] = [
   { label: 'Tour Plan', to: '/tourPlanFormula' },
 ];
 
+const MARQUEE_TEXT =
+  'দুনিয়াতে এমনভাবে জীবণ-যাপন করো যেন তুমি একজন অপরিচিত মুসাফির! \u00a0\u00a0✦\u00a0\u00a0 জাহান্নামকে প্রবৃত্তি এবং জান্নাত কষ্ট দ্বারা পরিবেষ্টন করা হয়েছে! \u00a0\u00a0✦\u00a0\u00a0 এই পার্থিব জীবণ খেল-তামাশা ব্যতীত কিছুই নয়!';
+
+/* ════════════════════════════════════════════════════
+   MARQUEE CONFIG — এখান থেকে সব কিছু control করুন
+   ════════════════════════════════════════════════════ */
+const MARQUEE_CONFIG = {
+  // Animation style বেছে নিন:
+  // 'style1' → Gold shimmer sweep (আলো বয়ে যায়)
+  // 'style2' → Wave float (উপরে-নিচে দোলে, italic serif)
+  // 'style3' → Glow breathe (জ্বলে-নেভে)
+  style: 'style3' as 'style1' | 'style2' | 'style3',
+
+  // Marquee চলার speed — কম মানে দ্রুত
+  scrollSpeed: '40s', // e.g. '20s' = fast, '60s' = slow
+
+  // Text effect-এর speed — কম মানে দ্রুত
+  textAnimSpeed: '15s', // e.g. '1s' = fast, '5s' = slow
+};
+
 const getStoredEmail = (): string => {
   try {
     return JSON.parse(localStorage.getItem('user') || '{}').email || '';
@@ -133,7 +153,6 @@ const Index = (): React.ReactElement => {
     .filter(Boolean)
     .join(' ');
 
-  // ── Hamburger inline style — position:fixed দিয়ে সব overflow bypass ──
   const hamStyle: React.CSSProperties = {
     position: 'fixed',
     top: '13px',
@@ -240,7 +259,7 @@ const Index = (): React.ReactElement => {
         </div>
       </nav>
 
-      {/* Hamburger — fixed position, সব overflow এর বাইরে */}
+      {/* ── Hamburger ── */}
       <button
         className="nx-ham-fixed"
         style={hamStyle}
@@ -248,7 +267,6 @@ const Index = (): React.ReactElement => {
         aria-label="Toggle menu"
       >
         {mobileOpen ? (
-          // X icon
           <svg
             width="18"
             height="18"
@@ -264,7 +282,6 @@ const Index = (): React.ReactElement => {
             />
           </svg>
         ) : (
-          // Bars icon
           <svg
             width="18"
             height="18"
@@ -277,6 +294,23 @@ const Index = (): React.ReactElement => {
           </svg>
         )}
       </button>
+
+      {/* ── MARQUEE BAR — navbar-এর ঠিক নিচে ── */}
+      <div className="nx-marquee-bar">
+        <div className="nx-marquee-track">
+          <span
+            className={`nx-marquee-text nx-marquee-text--${MARQUEE_CONFIG.style}`}
+            style={
+              {
+                '--scroll-speed': MARQUEE_CONFIG.scrollSpeed,
+                '--text-anim-speed': MARQUEE_CONFIG.textAnimSpeed,
+              } as React.CSSProperties
+            }
+          >
+            {MARQUEE_TEXT}&nbsp;&nbsp;&nbsp;&nbsp;{MARQUEE_TEXT}
+          </span>
+        </div>
+      </div>
 
       <div className="nx-spacer" />
 

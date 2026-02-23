@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
+import PageTitle from '../pageTitle/pageTitle';
 
 type Status = 'completed' | 'pending' | 'incomplete' | null;
 
@@ -724,12 +725,14 @@ const GeneralRules = () => {
         }
       `}</style>
 
+      <PageTitle title="General Rules" subtitle="General Rules" />
+
       {/* ===== FIXED STICKY DASHBOARD ===== */}
       <div style={styles.stickyTop}>
         {/* Header Row */}
         <div style={styles.headerRow}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            <h1 style={styles.title}>📋 General Rules</h1>
+            {/* <h1 style={styles.title}>📋 General Rules</h1> */}
             <p style={styles.subtitle}>ব্যক্তিগত নিয়মনীতি ড্যাশবোর্ড</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>

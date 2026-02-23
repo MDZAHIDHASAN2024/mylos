@@ -20,6 +20,7 @@
   --border: rgba(201, 168, 76, 0.14);
   --border-2: rgba(201, 168, 76, 0.28);
   --nav-h: 66px;
+  --marquee-h: 28px;
   --drawer-w: 300px;
   --radius: 10px;
   --font-display: 'Cormorant Garamond', serif;
@@ -493,10 +494,192 @@
   opacity: 1;
 }
 
-/* ── HAMBURGER FIXED — navbar এর বাইরে, position:fixed ──────────────────── */
-/* Desktop এ লুকানো */
+/* ── HAMBURGER FIXED ────────────────────────────────────────────────────── */
 .nx-ham-fixed {
   display: none;
+}
+
+/* ── MARQUEE BAR ────────────────────────────────────────────────────────── */
+.nx-marquee-bar {
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  height: var(--marquee-h);
+  z-index: 999;
+  background: #1a1500;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition:
+    background 0.4s var(--ease),
+    border-color 0.4s var(--ease),
+    height 0.3s var(--ease);
+}
+
+/* hover করলে theme বদলাবে */
+.nx-marquee-bar:hover {
+  background: #0a0800;
+  border-bottom-color: rgba(201, 168, 76, 0.5);
+  height: 32px;
+}
+
+.nx-marquee-track {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5%,
+    black 95%,
+    transparent
+  );
+}
+
+/* ── BASE TEXT ── */
+.nx-marquee-text {
+  display: inline-block;
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  padding-left: 100%;
+  transition:
+    color 0.4s var(--ease),
+    letter-spacing 0.4s var(--ease);
+}
+
+.nx-marquee-bar:hover .nx-marquee-text {
+  color: var(--gold-light);
+  letter-spacing: 0.1em;
+}
+
+/* ══════════════════════════════════════════════════════════
+   MARQUEE TEXT ANIMATION CONFIG
+   Navbar_index.tsx-এ MARQUEE_CONFIG object দিয়ে control করুন
+   ══════════════════════════════════════════════════════════ */
+
+/* ── CSS variables for runtime control via inline style ── */
+.nx-marquee-text {
+  --scroll-speed: 40s; /* marquee চলার speed */
+  --text-anim-speed: 3s; /* text effect speed */
+}
+
+/* ══ STYLE 1 — Gold shimmer sweep ══ */
+.nx-marquee-text--style1 {
+  animation:
+    nx-scroll-linear var(--scroll-speed) linear infinite,
+    nx-text-shimmer var(--text-anim-speed) ease-in-out infinite;
+  background: linear-gradient(
+    90deg,
+    var(--gold-dim) 0%,
+    var(--gold-light) 30%,
+    #fff8e0 50%,
+    var(--gold-light) 70%,
+    var(--gold-dim) 100%
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nx-marquee-bar:hover .nx-marquee-text--style1 {
+  animation-play-state: paused;
+}
+
+/* ══ STYLE 2 — Wave float ══ */
+.nx-marquee-text--style2 {
+  animation:
+    nx-scroll-linear var(--scroll-speed) linear infinite,
+    nx-text-wave var(--text-anim-speed) ease-in-out infinite;
+  font-style: italic;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--gold-light);
+  display: inline-block;
+}
+.nx-marquee-bar:hover .nx-marquee-text--style2 {
+  animation-play-state: paused;
+  color: var(--cream);
+}
+
+/* ══ STYLE 3 — Glow breathe ══ */
+.nx-marquee-text--style3 {
+  animation:
+    nx-scroll-linear var(--scroll-speed) linear infinite,
+    nx-text-glow var(--text-anim-speed) ease-in-out infinite;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--gold);
+}
+.nx-marquee-bar:hover .nx-marquee-text--style3 {
+  animation-play-state: paused;
+}
+
+/* ── SCROLL KEYFRAME ── */
+@keyframes nx-scroll-linear {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── TEXT EFFECT KEYFRAMES ── */
+@keyframes nx-text-shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+@keyframes nx-text-wave {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(-3px);
+  }
+  75% {
+    transform: translateY(3px);
+  }
+}
+
+@keyframes nx-text-glow {
+  0%,
+  100% {
+    text-shadow:
+      0 0 4px rgba(201, 168, 76, 0.3),
+      0 0 8px rgba(201, 168, 76, 0.1);
+    opacity: 0.7;
+  }
+  50% {
+    text-shadow:
+      0 0 10px rgba(201, 168, 76, 0.95),
+      0 0 22px rgba(201, 168, 76, 0.6),
+      0 0 45px rgba(201, 168, 76, 0.25);
+    opacity: 1;
+  }
 }
 
 /* ── BACKDROP ───────────────────────────────────────────────────────────── */
@@ -820,7 +1003,6 @@
   .nx-auth {
     display: none;
   }
-  /* Hamburger mobile এ দেখাবে — style inline এ দেওয়া আছে tsx এ */
   .nx-ham-fixed {
     display: flex !important;
   }
@@ -844,7 +1026,8 @@
   }
 }
 
+/* ── SPACER — navbar + marquee মিলিয়ে ──────────────────────────────────── */
 .nx-spacer {
-  height: var(--nav-h);
+  height: calc(var(--nav-h) + var(--marquee-h));
   flex-shrink: 0;
 }

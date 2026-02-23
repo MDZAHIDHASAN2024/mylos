@@ -73,10 +73,10 @@ const ReduceSpeakingFormula = () => {
 
   return (
     <>
-      <PageTitle
+      {/* <PageTitle
         title="Reduce Speaking Formula"
         subtitle="Reduce Speaking Formula"
-      />
+      /> */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Cinzel:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap');
 
