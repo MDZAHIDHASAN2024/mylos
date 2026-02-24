@@ -1138,18 +1138,18 @@ const Home = () => {
               </div>
               {(
                 [
-                  { label: 'English', value: '23/02/2026', icon: '🌍' },
+                  { label: 'English', value: '25/02/2026', icon: '🌍' },
                   {
                     label: 'Bangla (Bangladesh)',
-                    value: '10/11/1432',
+                    value: '12/11/1432',
                     icon: '🇧🇩',
                   },
                   {
                     label: 'Hijri (Saudi Arabia)',
-                    value: '05/09/1447',
+                    value: '07/09/1447',
                     icon: '🇸🇦',
                   },
-                  { label: 'Monday' },
+                  { label: 'Wednesday' },
                 ] as { label: string; value: string; icon: string }[]
               ).map(({ label, value, icon }) => (
                 <div
