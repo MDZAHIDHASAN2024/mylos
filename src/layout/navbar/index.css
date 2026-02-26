@@ -561,7 +561,7 @@
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.06em;
-  color: var(--gold);
+  color: red;
   padding-left: 100%;
   transition:
     color 0.4s var(--ease),
@@ -633,7 +633,7 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 600;
-  color: var(--gold);
+  color: red;
 }
 .nx-marquee-bar:hover .nx-marquee-text--style3 {
   animation-play-state: paused;
