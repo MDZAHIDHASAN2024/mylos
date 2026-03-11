@@ -1134,19 +1134,19 @@ const Home = () => {
                   textTransform: 'uppercase',
                 }}
               >
-                অ্যাপ শুরুর তারিখ
+                শুরুর তারিখ
               </div>
               {(
                 [
-                  { label: 'English', value: '27/02/2026', icon: '🌍' },
+                  { label: 'English', value: '13/03/2026', icon: '🌍' },
                   {
                     label: 'Bangla (Bangladesh)',
-                    value: '14/11/1432',
+                    value: '28/11/1432',
                     icon: '🇧🇩',
                   },
                   {
                     label: 'Hijri (Saudi Arabia)',
-                    value: '09/09/1447',
+                    value: '23/09/1447',
                     icon: '🇸🇦',
                   },
                   { label: 'Friday' },

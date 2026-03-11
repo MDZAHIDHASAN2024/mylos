@@ -41,7 +41,7 @@ const SOCIAL: { icon: React.ReactElement; href: string; label: string }[] = [
   { icon: <FaGithub />, href: 'https://github.com', label: 'GitHub' },
 ];
 
-const VERSION = 'v12.01';
+const VERSION = 'v12.02';
 const YEAR = new Date().getFullYear();
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -76,7 +76,7 @@ const Footer = (): React.ReactElement => {
           </div>
           <p className="ft__tagline">
             Engineer your life with intention. Every system, every habit —
-            Crafted by Zahid Hasan.
+            Crafted & developed by Zahid Hasan 01745940065.
           </p>
           <div className="ft__socials">
             {SOCIAL.map(({ icon, href, label }) => (
